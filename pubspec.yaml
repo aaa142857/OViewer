@@ -49,7 +49,7 @@ dependencies:
   flutter_inappwebview: ^5.8.0
 
   # Utils
-  intl: ^0.18.1
+  intl: '>=0.18.1'
   logger: ^2.0.2
 
 dev_dependencies:
