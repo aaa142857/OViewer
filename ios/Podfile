@@ -1,5 +1,6 @@
-# Uncomment this line to define a global platform for your project
-platform :ios, '11.0'
+# Platform set to 12.0 for CocoaPods dependency resolution compatibility.
+# Actual deployment target is forced to 11.0 via post_install below.
+platform :ios, '12.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
