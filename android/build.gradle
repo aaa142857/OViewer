@@ -1,11 +1,12 @@
 buildscript {
-    ext.kotlin_version = '1.9.10'
+    ext.kotlin_version = '1.7.10'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -23,21 +24,6 @@ subprojects {
 }
 subprojects {
     project.evaluationDependsOn(':app')
-}
-
-// Fix for AGP 8.x: inject namespace for plugins that only have package in AndroidManifest
-subprojects { sub ->
-    sub.plugins.withId("com.android.library") {
-        if (sub.android.namespace == null || sub.android.namespace.isEmpty()) {
-            def manifest = file("${sub.projectDir}/src/main/AndroidManifest.xml")
-            if (manifest.exists()) {
-                def pkg = new XmlSlurper().parse(manifest).@package.toString()
-                if (pkg) {
-                    sub.android.namespace = pkg
-                }
-            }
-        }
-    }
 }
 
 tasks.register("clean", Delete) {
