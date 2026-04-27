@@ -42,16 +42,17 @@ jobs:
             -configuration Release \
             -sdk iphoneos \
             -destination generic/platform=iOS \
+            -derivedDataPath build/ios/DerivedData \
             CODE_SIGNING_ALLOWED=NO \
             ONLY_ACTIVE_ARCH=NO
 
       - name: Create unsigned IPA
         run: |
-          mkdir -p build/ios/ipa
-          cd build/ios/iphoneos
-          mkdir Payload
-          cp -r Runner.app Payload/
-          zip -r ../ipa/OViewer.ipa Payload
+          APP_PATH="build/ios/DerivedData/Build/Products/Release-iphoneos/Runner.app"
+          mkdir -p build/ios/ipa/Payload
+          cp -r "$APP_PATH" build/ios/ipa/Payload/
+          cd build/ios/ipa
+          zip -r OViewer.ipa Payload
           rm -rf Payload
 
       - name: Upload IPA artifact
