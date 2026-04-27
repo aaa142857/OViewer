@@ -1,6 +1,5 @@
-# Platform set to 12.0 for CocoaPods dependency resolution compatibility.
-# Actual deployment target is forced to 11.0 via post_install below.
-platform :ios, '12.0'
+# iOS 11.0 deployment target - requires Xcode 14.x (Xcode 15+ dropped iOS 11 support)
+platform :ios, '11.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
