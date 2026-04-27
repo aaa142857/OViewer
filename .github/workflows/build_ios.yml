@@ -33,7 +33,14 @@ jobs:
 
       - name: Build iOS (no codesign)
         run: |
-          flutter build ios --release --no-codesign
+          flutter build ios --release --no-codesign --config-only
+          xcodebuild -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination generic/platform=iOS \
+            CODE_SIGNING_ALLOWED=NO \
+            ONLY_ACTIVE_ARCH=NO
 
       - name: Create unsigned IPA
         run: |
