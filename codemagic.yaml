@@ -1,0 +1,41 @@
+workflows:
+  build-ios:
+    name: Build iOS IPA
+    max_build_duration: 30
+    instance_type: mac_mini_m2
+    environment:
+      flutter: 3.16.0
+      xcode: 14.3.1
+      cocoapods: default
+    scripts:
+      - name: Get dependencies
+        script: flutter pub get
+      - name: Generate drift code
+        script: dart run build_runner build --delete-conflicting-outputs
+      - name: Build iOS (no codesign)
+        script: flutter build ios --release --no-codesign
+      - name: Create unsigned IPA
+        script: |
+          cd build/ios/iphoneos
+          mkdir Payload
+          cp -r Runner.app Payload/
+          zip -r OViewer.ipa Payload
+    artifacts:
+      - build/ios/iphoneos/OViewer.ipa
+
+  build-android:
+    name: Build Android APK
+    max_build_duration: 30
+    instance_type: linux_x2
+    environment:
+      flutter: 3.16.0
+      java: 17
+    scripts:
+      - name: Get dependencies
+        script: flutter pub get
+      - name: Generate drift code
+        script: dart run build_runner build --delete-conflicting-outputs
+      - name: Build APK
+        script: flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
