@@ -140,4 +140,4 @@ git push origin v1.0.0
 
 ## 许可证
 
-MIT
+Apache License 2.0
