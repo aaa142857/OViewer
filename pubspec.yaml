@@ -41,21 +41,15 @@ dependencies:
 
   # UI
   flutter_staggered_grid_view: ^0.7.0
-  pull_to_refresh: ^2.0.0
   scrollable_positioned_list: ^0.3.8
   shimmer: ^3.0.0
   flutter_slidable: ^3.0.1
-  badges: ^3.1.2
 
   # WebView (Login) - MUST stay on 5.x for iOS 11
   flutter_inappwebview: ^5.8.0
 
   # Utils
   intl: ^0.18.1
-  url_launcher: ^6.2.1
-  share_plus: ^7.2.1
-  package_info_plus: ^5.0.1
-  permission_handler: ^11.0.1
   logger: ^2.0.2
 
 dev_dependencies:
